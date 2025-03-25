@@ -151,7 +151,7 @@ def train(args: Namespace) -> None:
             checkpoint = torch.hub.load_state_dict_from_url(
                 args.resume, map_location='cpu', check_hash=True)
         else:
-            checkpoint = torch.load(args.resume, map_location='cpu')
+            torch.load(args.resume, map_location='cpu', weights_only=False)
 
         model_state_dict = model_without_ddp.state_dict()
         checkpoint_state_dict = checkpoint['model']
